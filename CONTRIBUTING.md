@@ -1,143 +1,249 @@
 # Contributing to Skill Universal
 
-Thank you for your interest in contributing to Skill Universal!
+Thank you for your interest in contributing to Skill Universal! This document provides guidelines and instructions for contributing.
 
-## How to Contribute
-
-### 1. Add a New Skill
-
-Create a new Skill in the `skills/` directory:
-
-```bash
-skills/your-skill/
-├── SKILL.md          # Required: Skill definition
-├── examples/        # Optional: Example inputs/outputs
-└── tests/           # Optional: Test cases
-```
-
-### 2. Improve Existing Skills
-
-- Fix bugs
-- Add features
-- Improve documentation
-- Add translations
-
-### 3. Extend Loaders
-
-- Support new platforms
-- Improve performance
-- Add features
-- Fix bugs
-
-## Skill Format
-
-All Skills must follow the SKILL.md format:
-
-```markdown
----
-name: your-skill
-description: What this skill does
-version: 1.0.0
-author: Your Name
-triggers:
-  - "trigger1"
-  - "trigger2"
-tools:
-  - Tool1
-  - Tool2
----
-
-## Skill Description
-
-Detailed explanation of what this skill does and how to use it.
-
-## Execution Steps
-
-1. Step 1 description
-2. Step 2 description
-3. ...
-
-## Examples
-
-### Example 1
-Input: ...
-Output: ...
-
-## Tool Mapping
-
-### Claude Code
-- Tool1 → Tool1
-
-### Agent SDK
-```python
-tools = {'tool1': Tool1()}
-```
-
-### OpenClaw
-```typescript
-const tools = { 'tool1': tool1 }
-```
-```
-
-## Development Setup
-
-### Python Development
-
-```bash
-cd loaders/python
-pip install -r requirements.txt
-pytest
-```
-
-### TypeScript Development
-
-```bash
-cd loaders/typescript
-npm install
-npm run build
-npm test
-```
-
-## Testing
-
-Add tests for your Skill in `tests/`:
-
-```python
-# tests/test_your_skill.py
-from skill_universal import SkillLoader
-
-def test_load_your_skill():
-    loader = SkillLoader()
-    config = loader.load('skills/your-skill/SKILL.md')
-    assert config.name == 'your-skill'
-```
-
-## Documentation
-
-Update documentation in `docs/`:
-- English: `docs/en/`
-- 繁體中文: `docs/zh-tw/`
-- 日本語: `docs/ja/`
-
-## Pull Request Process
+## 🚀 Quick Start for Contributors
 
 1. Fork the repository
-2. Create your feature branch
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes
-4. Add tests
-5. Update documentation
-6. Submit a pull request
+4. Run tests (`npm run test:all` or `pytest`)
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
 
-## Code Style
+## 📋 Development Setup
 
-- **Python**: Follow PEP 8
-- **TypeScript**: Follow ESLint rules
-- **Markdown**: Use 80-character line length where possible
+### Prerequisites
 
-## Questions?
+- Python 3.9+
+- Node.js 18+
+- Git
 
-Feel free to open an issue for discussion!
+### Setup Steps
+
+```bash
+# Clone your fork
+git clone https://github.com/YOUR_USERNAME/skill-universal.git
+cd skill-universal
+
+# Set up Python environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -e ".[dev]"
+
+# Set up TypeScript environment
+npm install
+
+# Run tests to verify setup
+npm run test:all
+```
+
+## 🧪 Testing
+
+### Python Tests
+
+```bash
+# Run all Python tests
+pytest loaders/python/tests/
+
+# Run with coverage
+pytest --cov=skill_universal --cov-report=html
+
+# Run specific test
+pytest loaders/python/tests/test_skill_loader.py::test_load_skill
+```
+
+### TypeScript Tests
+
+```bash
+# Run all TypeScript tests
+npm test
+
+# Run with coverage
+npm run test:coverage
+
+# Watch mode
+npm test -- --watch
+```
+
+### Run All Tests
+
+```bash
+npm run test:all
+```
+
+## 📝 Code Style
+
+### Python
+
+We use:
+- **Black** for formatting
+- **Ruff** for linting
+- **mypy** for type checking
+
+```bash
+# Format code
+ruff format loaders/python/
+
+# Lint code
+ruff check loaders/python/
+
+# Type check
+mypy loaders/python/skill_loader.py
+```
+
+### TypeScript
+
+We use:
+- **Prettier** for formatting
+- **ESLint** for linting
+- **TypeScript** for type checking
+
+```bash
+# Format code
+npm run format
+
+# Lint code
+npm run lint
+
+# Type check
+npm run typecheck
+```
+
+## 🎯 Types of Contributions
+
+### Bug Fixes
+
+1. Check existing [Issues](https://github.com/claude-world/skill-universal/issues)
+2. Create an issue or comment on existing one
+3. Fix the bug
+4. Add tests to prevent regression
+
+### New Features
+
+1. Open an issue to discuss the feature first
+2. Get feedback from maintainers
+3. Implement the feature
+4. Add tests and documentation
+
+### Documentation
+
+We welcome documentation improvements:
+- Fixing typos
+- Adding examples
+- Improving explanations
+- Translating documentation
+
+### Example Skills
+
+Contributing new example skills is a great way to help others learn:
+
+1. Create a new directory in `skills/your-skill/`
+2. Add a `SKILL.md` file
+3. Follow the skill format
+4. Add usage examples in `examples/`
+
+## 📧 Pull Request Guidelines
+
+### PR Title
+
+Use conventional commits format:
+
+- `feat: add support for LangChain`
+- `fix: correct tool mapping for Bash`
+- `docs: improve API documentation`
+- `test: add tests for skill validation`
+
+### PR Description
+
+Include:
+- **What** changes were made
+- **Why** the changes are needed
+- **How** to test the changes
+- **Related issues** (e.g., `Fixes #123`)
+
+### PR Checklist
+
+Before submitting, ensure:
+- [ ] Tests pass locally
+- [ ] Code follows style guidelines
+- [ ] Documentation is updated
+- [ ] Commit messages are clear
+- [ ] PR description is complete
+
+## 🏗️ Project Structure
+
+```
+skill-universal/
+├── skills/           # Example skills (SKILL.md format)
+├── loaders/
+│   ├── python/       # Python implementation
+│   └── typescript/   # TypeScript implementation
+├── examples/         # Usage examples
+├── tests/            # Integration tests
+├── docs/             # Documentation
+└── .github/          # GitHub workflows
+```
+
+## 🤝 Code of Conduct
+
+Be respectful, inclusive, and constructive. We're all here to build something amazing together.
+
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for details.
+
+## 📚 Adding Support for New Platforms
+
+To add support for a new agent platform:
+
+1. Create a new converter method
+2. Add tool mappings
+3. Add tests
+4. Add documentation
+5. Add examples
+
+## 🐛 Reporting Bugs
+
+When reporting bugs, include:
+- Python/Node.js version
+- Skill Universal version
+- Steps to reproduce
+- Expected vs actual behavior
+- Error messages and stack traces
+
+## 💡 Feature Requests
+
+For feature requests:
+- Explain the use case
+- Describe desired behavior
+- Provide examples if possible
+- Consider if it fits the project scope
+
+## 📖 Documentation Style
+
+- Use clear, concise language
+- Provide code examples
+- Include expected output
+- Link to related docs
+- Use consistent terminology
+
+## 🎓 Getting Help
+
+- Check existing [Issues](https://github.com/claude-world/skill-universal/issues)
+- Start a [Discussion](https://github.com/claude-world/skill-universal/discussions)
+- Read the [Documentation](https://github.com/claude-world/skill-universal/tree/main/docs)
+
+## 🌟 Recognition
+
+Contributors will be:
+- Listed in CONTRIBUTORS.md
+- Mentioned in release notes
+- Celebrated in our community
+
+## 📜 License
+
+By contributing, you agree that your contributions will be licensed under the MIT License.
 
 ---
 
-**Happy Coding! 🚀**
+Thank you for contributing to Skill Universal! 🎉

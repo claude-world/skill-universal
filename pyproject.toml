@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skill-universal"
+version = "0.1.0"
+description = "Universal Skill Loader - Write Skills once, run everywhere"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Claude World Community", email = "community@claude-world.com"}
+]
+keywords = ["claude", "anthropic", "agent", "skill", "ai", "llm"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "python-frontmatter>=1.0.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+]
+agent-sdk = [
+    "anthropic>=0.18.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/claude-world/skill-universal"
+Documentation = "https://github.com/claude-world/skill-universal/tree/main/docs"
+Repository = "https://github.com/claude-world/skill-universal"
+Issues = "https://github.com/claude-world/skill-universal/issues"
+
+[tool.setuptools]
+packages = ["skill_universal"]
+
+[tool.setuptools.package-data]
+skill_universal = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311", "py312", "py313"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "loaders/python/tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=skill_universal --cov-report=term-missing --cov-report=html"

@@ -1,0 +1,66 @@
+{
+  "name": "skill-universal",
+  "version": "0.1.0",
+  "description": "Universal Skill Loader - Write Skills once, run everywhere",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:all": "npm run test && cd loaders/typescript && npm test",
+    "lint": "eslint loaders/typescript --ext .ts",
+    "lint:fix": "eslint loaders/typescript --ext .ts --fix",
+    "format": "prettier --write loaders/typescript",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "claude",
+    "anthropic",
+    "agent",
+    "skill",
+    "ai",
+    "llm",
+    "openclaw"
+  ],
+  "author": "Claude World Community <community@claude-world.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/claude-world/skill-universal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/claude-world/skill-universal/issues"
+  },
+  "homepage": "https://github.com/claude-world/skill-universal#readme",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "eslint": "^8.54.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "loaders",
+    "README.md",
+    "LICENSE"
+  ]
+}
