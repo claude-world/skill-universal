@@ -1,0 +1,30 @@
+{
+  "name": "skill-universal",
+  "version": "1.0.0",
+  "description": "Universal Skill Loader - Load SKILL.md files across platforms",
+  "main": "SkillLoader.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "cli": "ts-node SkillLoader.ts"
+  },
+  "keywords": [
+    "claude-code",
+    "agent-sdk",
+    "skills",
+    "universal"
+  ],
+  "author": "Claude World",
+  "license": "MIT",
+  "dependencies": {
+    "front-matter": "^4.0.2",
+    "glob": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0"
+  }
+}
